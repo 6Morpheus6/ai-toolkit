@@ -11,21 +11,23 @@ module.exports = {
         env: {
           PYTHONUTF8: "1",
           HF_HUB_ENABLE_HF_TRANSFER: "0"
-         },
+        },
         path: "app/ui",
         message: [
           "npm run start",
         ],
         on: [{
-          "event": "/http:\/\/\\S+/",
-          "done": true
+          // Next.js prints "Local:" after it has bound. Do not match the earlier
+          // "AI Toolkit UI: http://localhost:..." line, which is logged before listen().
+          event: "/Local:\\s+(http:\\/\\/[0-9a-zA-Z.]+:[0-9]+)/",
+          done: true
         }]
       }
     },
     {
       method: "local.set",
       params: {
-        url: "http://localhost:8675"
+        url: "{{input.event[1]}}"
       }
     }
   ]
