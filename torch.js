@@ -26,7 +26,8 @@ module.exports = {
         "path": "{{args && args.path ? args.path : '.'}}",
         "message": [
           "uv pip install torch==2.9.1 torchvision==0.24.1 torchaudio==2.9.1 --index-url https://download.pytorch.org/whl/cu128 --reinstall",
-          "uv pip install triton --reinstall --no-deps"
+          "uv pip install triton --reinstall --no-deps",
+          "uv pip install numpy==1.26.4"
         ]
       }
     }
